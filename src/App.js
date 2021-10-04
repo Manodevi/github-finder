@@ -1,10 +1,11 @@
 import Navbar from './layout/Navbar';
 
 function App() {
+  let name = [2,2];
   return (
     <div className="App">
       <header className="App-header">
-        <Navbar title="GitHub Finder" />
+        <Navbar />
       </header>
     </div>
   );
