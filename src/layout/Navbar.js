@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 class Navbar extends React.Component {
   static defaultProps = {
-    title: "Github Finder",
     icon: "fa-github fab"
   };
 
@@ -13,7 +12,7 @@ class Navbar extends React.Component {
 
   render () {
     return (
-      <nav>
+      <nav className="navbar bg-primary">
         <div>
           <i className={this.props.icon} /> {this.props.title}
         </div>
