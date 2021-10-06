@@ -14,7 +14,7 @@ class Users extends Component {
       return <Spinner />;
     } else {
       return <div className="grid-3">
-        {this.props.users.map(user => (
+        {users.map(user => (
           <UserItem key={user.id} user={user} />
         ))}
       </div>;
