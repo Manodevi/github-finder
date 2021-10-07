@@ -30,6 +30,7 @@ class App extends React.Component {
 
   setAlert = (message, type) => {
     this.setState({ alert: {message, type}});
+    setTimeout(() => this.setState({alert: null}), 3000);
   };
 
   render () {
