@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 class App extends React.Component {
   state = {
     users: [],
+    user: {},
     loading: false,
     alert: null
   };
@@ -27,6 +28,12 @@ class App extends React.Component {
     this.setState({ users: axiosRes.data.items, loading: false });
   };
 
+  getUser = async (username) => {
+    this.setState({ loading: true });
+    const axiosRes = await axios.get(`https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+    this.setState({ user: axiosRes.data, loading: false });
+  };
+
   clearUsers = () => {
     this.setState({ users: [], loading: false });
   };
@@ -37,7 +44,7 @@ class App extends React.Component {
   };
 
   render () {
-    const {users, loading, alert} = this.state;
+    const {users, user, loading, alert} = this.state;
     
     return (
       <Router>       
@@ -62,7 +69,12 @@ class App extends React.Component {
                />
                <Route path="/about" exact component={About} />
                <Route path="/user/:login" exact render={props => (
-                 <User loading={loading} />
+                  <User 
+                    {...props}
+                    loading={loading}
+                    getUser={this.getUser}
+                    user={user}
+                    />
                )} />
             </Switch>
           </div>
