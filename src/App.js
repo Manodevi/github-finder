@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Navbar from './layout/Navbar';
 import Users from './components/users/Users.js';
 import Search from './components/users/Search';
 import Alert from './layout/Alert';
 import axios from 'axios';
+import About from './components/pages/About';
+import User from './components/users/User';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 class App extends React.Component {
   state = {
@@ -37,21 +40,34 @@ class App extends React.Component {
     const {users, loading, alert} = this.state;
     
     return (
-      <div className="App">
-        <header className="App-header">
-          <Navbar title="Github Finder" />
-        </header>
-        <div className="container">
-          <Alert alert={alert} />
-          <Search 
-            searchUsers={this.searchUsers} 
-            clearSearch={this.clearUsers}
-            setAlert={this.setAlert}
-            showClear={users.length > 0 ? true : false}
-            />
-          <Users users={users} loading={loading} />
+      <Router>       
+        <div className="App">
+          <header className="App-header">
+            <Navbar title="Github Finder" />
+          </header>
+          <div className="container">
+            <Alert alert={alert} />
+            <Switch>
+              <Route exact path='/' render={props => (
+                <Fragment>
+                  <Search 
+                    searchUsers={this.searchUsers} 
+                    clearSearch={this.clearUsers}
+                    setAlert={this.setAlert}
+                    showClear={users.length > 0 ? true : false}
+                    />
+                  <Users users={users} loading={loading} />
+                </Fragment>
+              )}
+               />
+               <Route path="/about" exact component={About} />
+               <Route path="/user/:login" exact render={props => (
+                 <User loading={loading} />
+               )} />
+            </Switch>
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
