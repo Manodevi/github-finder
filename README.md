@@ -1,16 +1,18 @@
-# GitHub Finder React App
+# GitHub Finder - React App
+## How I Worked on this app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+My goal is to practice react app using class component and make them to convert to functional component with React Hooks.
+* Installed with [Create React App](https://github.com/facebook/create-react-app).
+* Axios library - to make Github API request.
+* Github icon from [Font-awesome](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css)
+* Routing - [React Router Dom](https://reactrouter.com/web/guides/quick-start)
+* App Level State Management - __Context API__, I didn't use a state management library like Redux on purpose. For this simple app, Context API is sufficient.
+* React Hooks Practiced - 
+  * useState
+  * useReducer
+  * useEffect
+  * useContext
 
-[Font-awesome](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css) - Github icon.
+## Why I built this project
 
-Axios library - to make Github API request.
-
-[React Router Dom](https://reactrouter.com/web/guides/quick-start)
-
-## Github API
-
-[To get users list](https://docs.github.com/en/rest/reference/users)
-
-[To search users](https://docs.github.com/en/rest/reference/search#search-users)
-
+My plan is to become a full-stack MERN developer eventually. But for the beginning I focus on the frontend - React. That's why I decided to use an existing API rather to create a custom server.
