@@ -9,7 +9,7 @@ import GithubContext from '../../context/github/githubContext';
 
 const User = props => {
   const githubContext = useContext(GithubContext);
-  const { user, loading, getUser, getUserRepos, repos } = githubContext;
+  const { loading, getUser, getUserRepos, repos } = githubContext;
   
   useEffect(() => {
     getUser(props.match.params.login);

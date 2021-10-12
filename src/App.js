@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Home from './components/pages/Home';
 import Navbar from './layout/Navbar';
 import Alert from './layout/Alert';
