@@ -11,6 +11,17 @@ import  {
   SET_ALERT
 } from '../types';
 
+let githubClientId, githubClientSecret;
+const GITHUB_URL = "https://api.github.com/";
+
+if(process.env.NODE_ENV !== 'production') {
+  githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
+  githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
+} else {
+  githubClientId = process.env.GITHUB_CLIENT_ID;
+  githubClientSecret = process.env.GITHUB_CLIENT_SECRET;
+}
+
 const GithubState = props => {
   const initialState = {
     users: [],
@@ -25,21 +36,21 @@ const GithubState = props => {
   // Search Users
   const searchUsers = async (text) => {
     setLoading();
-    const axiosRes = await axios.get(`https://api.github.com/search/users?q=${text}&per_page=30&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+    const axiosRes = await axios.get(`${GITHUB_URL}search/users?q=${text}&per_page=30&client_id=${githubClientId}&client_secret=${githubClientSecret}`);
     dispatch({type: SEARCH_USERS, payload: axiosRes.data.items});
   };
 
   // Get User
   const getUser = async (username) => {
     setLoading();
-    const axiosRes = await axios.get(`https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+    const axiosRes = await axios.get(`${GITHUB_URL}users/${username}?client_id=${githubClientId}&client_secret=${githubClientSecret}`);
     dispatch({type: GET_USER, payload: axiosRes.data});    
   };
 
   // Get Repos
   const getUserRepos = async (username) => {
     setLoading();
-    const axiosRes = await axios.get(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+    const axiosRes = await axios.get(`${GITHUB_URL}users/${username}/repos?per_page=5&sort=created:asc&client_id=${githubClientId}&client_secret=${githubClientSecret}`);
     dispatch({type: GET_REPOS, payload: axiosRes.data});        
   };
 
